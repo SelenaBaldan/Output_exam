@@ -1,0 +1,32 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+
+%post
+apt-get update
+apt-get -y upgrade
+apt-get install -y gfortran git gpg wget
+# Install Intel Libraries
+wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB 
+cat GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB | gpg --dearmor | tee /usr/share/keyrings/oneapi-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/oneapi-archive-keyring.gpg] https://apt.repos.intel.com/oneapi all main" | tee /etc/apt/sources.list.d/oneAPI.list
+apt-get update
+apt-get install -y intel-oneapi-runtime-libs
+
+mkdir -p /natsub3d/EsercitazioneCapri
+cd /natsub3d
+git clone https://github.com/SelenaBaldan/EsercitazioneCapri.git
+chmod +x /natsub3d/EsercitazioneCapri/biogeo3d
+
+%runscript
+cd mydata
+exec /natsub3d/EsercitazioneCapri/biogeo3d
+
+
+%labels
+  Author Selena Baldan
+  Version 1.0
+  
+%help
+Singularity container for the assignment for the Phd course on parallel programming. The container is based on Ubuntu20:04  and it contains the biogeo3d fortran program available in the natsub3d folder and the associated libraries. When executed with singularity run, the container will execute the fortran program installed in the %post section. 
+
