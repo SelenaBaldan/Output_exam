@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH --job-name natsub3d
+#SBATCH --output output_%j.txt
+#SBATCH --error errors_%j.txt
+#SBATCH --mail-user selena.baldan@phd.unipd.it
+#SBATCH --mail-type END,FAIL
+
+#SBATCH --time 01:00:00
+#SBATCH --ntask 1
+#SBATCH --partition allgroups
+#SBATCH --mem 5G
+
+cd /stor/progetti/p1026/p1026u05
+
+srun singularity exec test.sif \
+
