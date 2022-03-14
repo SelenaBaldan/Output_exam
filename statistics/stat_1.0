@@ -1,0 +1,29 @@
+Job ID: 164129
+Cluster: cluster_capri
+User/Group: p1026u05/p1026
+State: COMPLETED (exit code 0)
+Cores: 1
+CPU Utilized: 01:12:03
+CPU Efficiency: 99.93% of 01:12:06 core-walltime
+Job Wall-clock time: 01:12:06
+Memory Utilized: 636.27 MB
+Memory Efficiency: 6.21% of 10.00 GB
+
+job file:
+#!/bin/bash
+
+#SBATCH --job-name natsub3d
+#SBATCH --output output_%j.txt
+#SBATCH --error errors_%j.txt
+#SBATCH --mail-user selena.baldan@phd.unipd.it
+#SBATCH --mail-type END,FAIL
+
+#SBATCH --time 02:00:00
+#SBATCH --ntasks 1
+#SBATCH --partition allgroups
+#SBATCH --mem 10G
+
+cd $SLURM_SUBMIT_DIR
+
+srun singularity exec test.sif /natsub3d/EsercitazioneCapri/biogeo3d
+
