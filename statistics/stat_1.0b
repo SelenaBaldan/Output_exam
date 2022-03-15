@@ -1,0 +1,11 @@
+Job ID: 164683
+Cluster: cluster_capri
+User/Group: p1026u05/p1026
+State: COMPLETED (exit code 0)
+Cores: 1
+CPU Utilized: 00:31:00
+CPU Efficiency: 99.79% of 00:31:04 core-walltime
+Job Wall-clock time: 00:31:04
+Memory Utilized: 667.63 MB
+Memory Efficiency: 65.20% of 1.00 GB
+
