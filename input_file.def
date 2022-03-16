@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+
+%post
+apt-get update
+apt-get -y upgrade
+apt-get install -y gfortran git gpg wget
+
+mkdir -p /input_natsub3d/Input_exam
+cd /input_natsub3d
+git clone https://github.com/SelenaBaldan/Input_exam.git
+chmod +x /input_natsub3d/Input_exam/mk_input_grid.exe
+
+%runscript
+exec /input_natsub3d/Input_exam/mk_input_grid.exe
+
+
+%labels
+  Author Selena Baldan
+  Version 1.0
+  
+%help
+Singularity container for the assignment for the Phd course on parallel programming. The container is based on Ubuntu20:04  and it contains the executable for the construction of the input file for the natsub3d and the associated libraries. When executed with singularity run, the container will execute the fortran program installed in the %post section. 
+
